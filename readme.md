@@ -1,10 +1,10 @@
 # Gulp with Bootstrap Starter Kit
 
-Gulp with Bootstrap v4 Starter Kit 
+Gulp with Bootstrap v5 Starter Kit 
 
 This kit was inspired by [Manjunath's work](https://github.com/lazymozek/gulp-with-tailwindcss) on a similar project.
 It contains predefined gulp tasks to build out a static site
-using Bootstrap 4 while making it easy to include other node modules
+using Bootstrap 5 while making it easy to include other node modules
 that might be necessary for deployment.
 
 ## Usage
