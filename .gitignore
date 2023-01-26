@@ -1,0 +1,13 @@
+# site support files
+node_modules
+public_html
+src/css/*.css
+*.lock
+
+# vm files
+.container
+
+# server files
+document_errors
+logs
+*.log
