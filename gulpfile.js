@@ -37,8 +37,8 @@ const htmlmin = require('gulp-htmlmin'); // Minify HTML Source
 const jsScripts = [
     // sample node_module integration with jquery and ts-elements
     `./node_modules/jquery/jquery.js`,
-    `./node_modules/popper.js/dist/popper.js`,
-    `./node_modules/popper.js/dist/popper-utils.js`,
+    `./node_modules/popper.js/dist/umd/popper.js`,
+    `./node_modules/popper.js/dist/umd/popper-utils.js`,
     `./node_modules/bootstrap/dist/js/bootstrap.bundle.js`,
     `${options.paths.src.js}/libs/**/*.js`,
 ];
