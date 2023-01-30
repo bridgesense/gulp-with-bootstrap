@@ -56,6 +56,10 @@ const cssScssStyles = [
     `${options.paths.src.css}/**/*.scss`
 ];
 
+const auxDirectories = [
+    `${options.paths.src.base}/Destination Cabo_files/**/*`, 
+];
+
 const auxFiles = [
     `${options.paths.src.base}/**/{*.,.}{htaccess,php,txt}`
 ];
@@ -91,8 +95,13 @@ function devHTML() {
   .pipe(dest(options.paths.dev.base));
 }
 
-function devAuxillary() {
-    return src(auxFiles)
+function devAuxDirectories() {
+    return src(auxDirectories, {base:"./src"})
+      .pipe(dest(options.paths.dev.base));
+}
+
+function devAuxFiles() {
+    return src(auxFiles, {base:"./src"})
       .pipe(dest(options.paths.dev.base));
 }
 
@@ -105,7 +114,7 @@ function devStyles() {
 }
 
 function devExternalScripts(){
-    return src(externalScripts)
+    return src(externalScripts, {base:"./src"})
     .pipe(dest(options.paths.dev.js + "/external"));
 }
 
@@ -126,12 +135,12 @@ function devJavascript() {
 }
 
 function devImages() {
-    return src(`${options.paths.src.img}/**/*`)
+    return src(`${options.paths.src.img}/**/*`, {base:"./src"})
     .pipe(dest(options.paths.dev.img));
 }
 
 function devFonts() {
-  return src(`${options.paths.src.font}/**/*`).pipe(
+  return src(`${options.paths.src.font}/**/*`, {base:"./src"}).pipe(
     dest(options.paths.dev.font)
   );
 }
@@ -139,7 +148,7 @@ function devFonts() {
 function watchFiles() {
   watch(
     `${options.paths.src.base}/**/{*.,.}{html,htaccess,php,txt}`,
-    series(devHTML, devAuxillary, previewReload)
+    series(devHTML, devAuxDirectories, devAuxFiles, previewReload)
   );
   watch(
     `${options.paths.src.css}/**/*.scss`,
@@ -172,8 +181,13 @@ function prodHTML() {
         .pipe(dest(options.paths.dist.base));
 }
 
-function prodAuxillary() {
-    return src(auxFiles)
+function prodAuxDirectories() {
+    return src(auxFiles, {base:"./src"})
+      .pipe(dest(options.paths.dist.base));
+}
+
+function prodAuxFiles() {
+    return src(auxFiles, {base:"./src"})
       .pipe(dest(options.paths.dist.base));
 }
 
@@ -189,7 +203,7 @@ function prodStyles() {
 }
 
 function prodExternalScripts(){
-    return src(externalScripts)
+    return src(externalScripts, {base:"./src"})
     .pipe(dest(options.paths.dist.js + "/external"));
 }
 
@@ -213,13 +227,13 @@ function prodJavascript() {
 }
 
 function prodImages() {
-  return src(options.paths.src.img + "/**/*")
+  return src(options.paths.src.img + "/**/*", {base:"./src"})
     .pipe(imagemin())
     .pipe(dest(options.paths.dist.img));
 }
 
 function prodFonts() {
-  return src(options.paths.src.font + "/**/*")
+  return src(options.paths.src.font + "/**/*", {base:"./src"})
     .pipe(dest(options.paths.dist.font));
 }
 
@@ -246,13 +260,13 @@ function buildFinish(done) {
 
 exports.default = series(
   devClean, // Clean Dist Folder
-  parallel(devStyles, series(devTypescript,devJavascript), devExternalScripts, devImages, devFonts, devHTML, devAuxillary), //Run All tasks in parallel
+  parallel(devStyles, series(devTypescript,devJavascript), devExternalScripts, devImages, devFonts, devHTML, devAuxDirectories, devAuxFiles), //Run All tasks in parallel
   livePreview, // Live Preview Build
   watchFiles // Watch for Live Changes
 );
 
 exports.prod = series(
   prodClean, // Clean Build Folder
-  parallel(prodStyles, series(prodTypescript,prodJavascript), prodExternalScripts, prodImages, prodFonts, prodHTML, prodAuxillary), //Run All tasks in parallel
+  parallel(prodStyles, series(prodTypescript,prodJavascript), prodExternalScripts, prodImages, prodFonts, prodHTML, prodAuxDirectories, prodAuxFiles), //Run All tasks in parallel
   buildFinish
 );
