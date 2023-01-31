@@ -96,8 +96,12 @@ function devHTML() {
 }
 
 function devAuxDirectories() {
-    return src(auxDirectories, {base:"./src"})
-      .pipe(dest(options.paths.dev.base));
+    if (auxDirectories.length != 0) {
+        return src(auxDirectories, {base:"./src"})
+        .pipe(dest(options.paths.dev.base));
+    } else {
+        return src('.', {allowEMpty:true});
+    }
 }
 
 function devAuxFiles() {

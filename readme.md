@@ -105,7 +105,6 @@ const auxDirectories = [
     `${options.paths.src.base}/additional_stuff/**/*`, 
 ];
 
-
 const auxFiles = [
     // Place custom PHP and server side scripts in the /src directory where needed.
 
