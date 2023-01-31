@@ -57,7 +57,7 @@ const cssScssStyles = [
 ];
 
 const auxDirectories = [
-    `${options.paths.src.base}/Destination Cabo_files/**/*`, 
+    // `${options.paths.src.base}/additional_stuff/**/*`, 
 ];
 
 const auxFiles = [
