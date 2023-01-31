@@ -95,9 +95,13 @@ function devHTML() {
   .pipe(dest(options.paths.dev.base));
 }
 
-function devAuxDirectories() {
-    return src(auxDirectories, {base:"./src"})
-      .pipe(dest(options.paths.dev.base));
+function prodAuxDirectories() {
+    if (auxDirectories.length != 0) {
+        return src(auxDirectories, {base:"./src"})
+        .pipe(dest(options.paths.dev.base));
+    } else {
+        return src('.', {allowEMpty:true});
+    }
 }
 
 function devAuxFiles() {
@@ -182,8 +186,12 @@ function prodHTML() {
 }
 
 function prodAuxDirectories() {
-    return src(auxDirectories, {base:"./src"})
-      .pipe(dest(options.paths.dist.base));
+    if (auxDirectories.length != 0) {
+        return src(auxDirectories, {base:"./src"})
+        .pipe(dest(options.paths.dist.base));
+    } else {
+        return src('.', {allowEMpty:true});
+    }
 }
 
 function prodAuxFiles() {
