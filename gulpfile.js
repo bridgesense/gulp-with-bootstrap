@@ -95,7 +95,7 @@ function devHTML() {
   .pipe(dest(options.paths.dev.base));
 }
 
-function prodAuxDirectories() {
+function devAuxDirectories() {
     if (auxDirectories.length != 0) {
         return src(auxDirectories, {base:"./src"})
         .pipe(dest(options.paths.dev.base));
