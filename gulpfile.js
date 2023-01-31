@@ -182,7 +182,7 @@ function prodHTML() {
 }
 
 function prodAuxDirectories() {
-    return src(auxFiles, {base:"./src"})
+    return src(auxDirectories, {base:"./src"})
       .pipe(dest(options.paths.dist.base));
 }
 
