@@ -186,17 +186,17 @@ function prodHTML() {
 }
 
 function prodAuxDirectories() {
-    return src(auxDirectories, {base:"./src"})
-      .pipe(dest(options.paths.dist.base));
-}
-
-function prodAuxDirectories() {
     if (auxDirectories.length != 0) {
         return src(auxDirectories, {base:"./src"})
         .pipe(dest(options.paths.dist.base));
     } else {
         return src('.', {allowEMpty:true});
     }
+}
+
+function prodAuxFiles() {
+    return src(auxFiles, {base:"./src"})
+      .pipe(dest(options.paths.dist.base));
 }
 
 function prodStyles() {
